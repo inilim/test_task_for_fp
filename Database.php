@@ -87,7 +87,6 @@ class Database implements DatabaseInterface
         /**
          * @var array{type:string,tmp_str:string,sub_query:string,pos:int} $result
          */
-        $is_array = \is_array($arg);
         match ($result['sub_query']) {
             '?' => '',
         };
@@ -146,7 +145,7 @@ class Database implements DatabaseInterface
 
     protected function escape(string $value): string
     {
-        return sprintf('"%s"', $this->mysqli->real_escape_string($value));
+        return '"' . $this->mysqli->real_escape_string($value) . '"';
     }
 
     protected function genStr(int $length = 10): string
