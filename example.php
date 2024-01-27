@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/dev.php';
+
 use FpDbTest\Database;
 use FpDbTest\DatabaseTest;
 
@@ -19,6 +21,11 @@ if ($mysqli->connect_errno) {
 }
 
 $db = new Database($mysqli);
+$db->buildQuery('SELECT ?# FROM users WHERE user_id = ?d {AND block = ?d}', [
+    ['name1', 'name2'],
+    111,
+    500
+]);
 // $test = new DatabaseTest($db);
 // $test->testBuildQuery();
 
